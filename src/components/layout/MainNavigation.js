@@ -7,12 +7,12 @@ const MainNavigation = () => {
         <Fragment>
             <header className={classes.header}>
                 <div className={classes.logo}>
-                    <NavLink activeClassName={classes.active} style={{color: 'white'}} to="/quotes">Great Quote</NavLink>
+                    <NavLink activeClassName={classes.active} style={{color: 'white'}} to="/">Great Quote</NavLink>
                 </div>
                 <nav className={classes.nav}>
                     <ul>
                         <li>
-                            <NavLink activeClassName={classes.active} to="/quotes">All Quotes</NavLink>
+                            <NavLink activeClassName={classes.active} to="/">All Quotes</NavLink>
                         </li>
                         <li>
                             <NavLink activeClassName={classes.active} to="/new-quote">Add a Quote</NavLink>
