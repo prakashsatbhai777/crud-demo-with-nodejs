@@ -16,7 +16,7 @@
 .item figure {
   margin: 0;
   padding: 0;
-  width: 56%;
+  width: 60%;
 }
 
 .item blockquote {
@@ -34,4 +34,21 @@
 .item figcaption {
   font-style: italic;
   color: #566d6d;
+}
+
+@media screen and (max-width: 500px) {
+  .item {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .item figure {
+    margin: 0 0 6px 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .item blockquote {
+    font-size: 21px;
+  }
 }

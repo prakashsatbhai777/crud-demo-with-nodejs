@@ -111,3 +111,23 @@ export async function deleteQuote(quoteId) {
 
   return data;
 }
+
+export async function updateQuote(quoteData) {
+  // const url = `${FIREBASE_DOMAIN}/quotes.json`;
+  const url = `${HOST}/updateQuote`;
+
+  const response = await fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(quoteData),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || 'Could not update quote.');
+  }
+
+  return null;
+}

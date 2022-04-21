@@ -16,13 +16,13 @@ const QuoteItem = (props) => {
         <blockquote>
           <p>{props.text}</p>
         </blockquote>
-        <figcaption>{props.author}</figcaption>
+        <figcaption>{`- ${props.author}`}</figcaption>
       </figure>
-      <Link className='btn' to={`${match.url}/${props.id}`}>View Fullscreen</Link>
-      <button className='btn' style={{fontSize: '16px'}} onClick={deleteButtonClickHandler} >Delete</button>
-      {/* <a className='btn'>
-        View Fullscreen
-      </a> */}
+      <div>
+        <Link className='btn' to={`${match.url}/${props.id}`}>View</Link>
+        &nbsp;<Link className='btn' to={`/edit-quote/${props.id}`}>Edit</Link>
+        &nbsp;<button className='btn' style={{fontSize: '16px'}} onClick={deleteButtonClickHandler} >Delete</button>
+      </div>
     </li>
   );
 };

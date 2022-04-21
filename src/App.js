@@ -9,6 +9,7 @@ import LoadingSpinner from "./components/UI/LoadingSpinner";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
+import EditQuote from "./pages/EditQuote";
 
 // const NewQuote = React.lazy(() => import('./pages/NewQuote'));
 // const QuoteDetail = React.lazy(() => import('./pages/QuoteDetail'));
@@ -33,6 +34,9 @@ function App() {
         </Route>
         <Route path="/new-quote">
           <NewQuote />
+        </Route>
+        <Route path="/edit-quote/:id">
+          <EditQuote />
         </Route>
         <Route path="*">
           <NotFound />

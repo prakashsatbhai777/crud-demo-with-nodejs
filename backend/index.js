@@ -56,20 +56,28 @@ app.get("/getsinglequote/:id", async (req, resp) => {
 });
 
 app.post("/addQuote", async (req, resp) => {
-    const data = req.body;
-    try{
-        const uri = "mongodb+srv://prakash:Prakash777@cluster0.onlm4.mongodb.net/Quote?retryWrites=true&w=majority";
-        const client = new MongoClient(uri);
-        const connectionResponse = await client.connect();
-        connectionResponse ? console.log('Connected...') : console.log('Not Connected...');
-        const db = client.db();
-        const quotesCollection = db.collection("quotes");
-        const quote = await quotesCollection.insertOne(data)
-        connectionResponse.close();
-        // client.close();
-        resp.send({status: "success", data: "Quote added successfully."});
-    }catch(error){
-        resp.send({status: "error", data: "Something went wrong."});
+    if(req.body){
+        const data = req.body;
+        if(data.text && data.text.trim() !== '' && data.author && data.author.trim() !== ''){
+            try{
+                const uri = "mongodb+srv://prakash:Prakash777@cluster0.onlm4.mongodb.net/Quote?retryWrites=true&w=majority";
+                const client = new MongoClient(uri);
+                const connectionResponse = await client.connect();
+                connectionResponse ? console.log('Connected...') : console.log('Not Connected...');
+                const db = client.db();
+                const quotesCollection = db.collection("quotes");
+                const quote = await quotesCollection.insertOne(data)
+                connectionResponse.close();
+                // client.close();
+                resp.send({status: "success", data: "Quote added successfully."});
+            }catch(error){
+                resp.send({status: "error", data: "Something went wrong."});
+            }
+        }else{
+            resp.send({status: "error", data: "Invalid input."});
+        }
+    }else{
+        resp.send({status: "error", data: "Invalid input."});
     }
 });
 
@@ -91,6 +99,44 @@ app.get("/deletequote/:id", async (req, resp) => {
     }catch(error){
         resp.send({status: "error", data: "Something went wrong."});
     }
+});
+
+app.post("/updateQuote", async (req, resp) => {
+    if(req.body){
+        const data = req.body;
+        if(data.id && data.id.trim() !== '' && data.text && data.text.trim() !== '' && data.author && data.author.trim() !== ''){
+            var id = { _id: ObjectId(data.id) };
+            var newData = { 
+                $set: {
+                    text: data.text, 
+                    author: data.author
+                } 
+            };
+
+            try{
+                const uri = "mongodb+srv://prakash:Prakash777@cluster0.onlm4.mongodb.net/Quote?retryWrites=true&w=majority";
+                const client = new MongoClient(uri);
+                const connectionResponse = await client.connect();
+                connectionResponse ? console.log('Connected...') : console.log('Not Connected...');
+                const db = client.db();
+                const quotesCollection = db.collection("quotes");
+                const quote = await quotesCollection.updateOne(id, newData)
+                connectionResponse.close();
+                // client.close();
+                resp.send({status: "success", data: "Quote updated successfully."});
+            }catch(error){
+                resp.send({status: "error", data: "Something went wrong."});
+            }
+        }else{
+            resp.send({status: "error", data: "Invalid input."});
+        }
+    }else{
+        resp.send({status: "error", data: "Invalid input."});
+    }
+});
+
+app.get('*', function(req, res){
+    res.send('Route not exist', 404);
 });
 
 app.listen(5000);

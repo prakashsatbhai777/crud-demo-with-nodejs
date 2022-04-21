@@ -19,7 +19,6 @@ const NewQuote = () => {
         }else if(status === 'completed' && error){
             toast.error('Something went wrong.');
         }
-
     }, [status, history]);
     
     const addQuoteHandler = (quoteData) => {
