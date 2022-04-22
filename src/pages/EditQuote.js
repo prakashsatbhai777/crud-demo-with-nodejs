@@ -30,9 +30,7 @@ const EditQuote = () => {
     useEffect(() => {
         if(statusUpdate === 'completed' && !errorUpdate){
             toast.success('Quote updated successfully.');
-            setTimeout(()=>{
-                history.push('/quotes');
-            }, 3000);
+            history.push('/quotes');
         }else if(statusUpdate === 'completed' && errorUpdate){
             toast.error('Something went wrong.');
         }

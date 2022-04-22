@@ -1,0 +1,9 @@
+{
+    "server": {
+      "host": "localhost",
+      "port": 5000
+    },
+    "mongodb": {
+        "url": "mongodb+srv://prakash:Prakash777@cluster0.onlm4.mongodb.net/Quote?retryWrites=true&w=majority"
+    }
+}

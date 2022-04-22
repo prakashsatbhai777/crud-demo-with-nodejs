@@ -47,9 +47,7 @@ const AllQuotes = () => {
 
     if(statusDelete === 'completed'){
         toast.success('Quote deleted successfully.');
-        setTimeout(()=>{
-            history.push('/');
-        }, 3000);
+        history.push('/');
     }
 
     if(error){

@@ -13,9 +13,7 @@ const NewQuote = () => {
     useEffect(() => {
         if(status === 'completed' && !error){
             toast.success('Quote added successfully.');
-            setTimeout(()=>{
-                history.push('/quotes');
-            }, 3000);
+            history.push('/quotes');
         }else if(status === 'completed' && error){
             toast.error('Something went wrong.');
         }

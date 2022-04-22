@@ -48,7 +48,7 @@ const QuoteDetail = () => {
     if(status === 'completed' && !quoteData){
         return <NoQuotesFound />
     }
-    
+
     const quote = JSON.parse(quoteData.data);
 
     return (
